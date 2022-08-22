@@ -11,7 +11,7 @@ public class Game {
     HashMap<String, Player> players = new HashMap<>();
 
     public void register(Player player) {
-        if (!players.containsValue(player)) {
+        if (!players.containsKey(player.getName())) {
             players.put(player.getName(), player);
         } else {
             throw new AlreadyExistsException("Player already registered");
