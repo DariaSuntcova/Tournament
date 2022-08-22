@@ -29,7 +29,7 @@ public class GameTest {
 
         boolean expected = true;
 
-        Assertions.assertEquals(expected, game.players.contains(player4));
+        Assertions.assertEquals(expected, game.players.containsValue(player4));
     }
 
     @Test
