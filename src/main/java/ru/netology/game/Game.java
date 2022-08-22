@@ -4,24 +4,15 @@ import ru.netology.domain.Player;
 import ru.netology.exception.AlreadyExistsException;
 import ru.netology.exception.NotRegisteredException;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
 
-    ArrayList<Player> players = new ArrayList<>();
-
-    public Player findByName(String name) {
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return player;
-            }
-        }
-        return null;
-    }
+    HashMap<String, Player> players = new HashMap<>();
 
     public void register(Player player) {
-        if (!players.contains(player)) {
-            players.add(player);
+        if (!players.containsKey(player.getName())) {
+            players.put(player.getName(), player);
         } else {
             throw new AlreadyExistsException("Player already registered");
         }
@@ -29,8 +20,8 @@ public class Game {
 
 
     public int round(String playerName1, String playerName2) {
-        Player player1 = findByName(playerName1);
-        Player player2 = findByName(playerName2);
+        Player player1 = players.get(playerName1);
+        Player player2 = players.get(playerName2);
         int result;
         if (player1 != null & player2 != null) {
             if (player1.getStrength() == player2.getStrength()) {
